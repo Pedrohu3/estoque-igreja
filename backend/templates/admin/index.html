@@ -1,0 +1,7 @@
+{% extends "admin/index.html" %}
+
+{% block sidebar %}
+{% if user.is_superuser or user.role == "admin" %}
+{{ block.super }}
+{% endif %}
+{% endblock %}

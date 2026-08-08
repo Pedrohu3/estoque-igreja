@@ -20,6 +20,9 @@ Este repositorio contem um backend em **Django** (com DRF) e um frontend em **Ne
   - `SaleItem` (item de venda: produto, quantidade, preco unitario, subtotal).
 - `apps.finance`
   - `CashMovement` (entrada/saida, categoria, valor, descricao).
+- `apps.events`
+  - `Event` (nome do evento, data do evento, historico de compras para eventos).
+  - `EventItem` (produto, quantidade, preco de compra na epoca, vinculado ao evento).
 - `apps.analytics`
   - Endpoints de BI (consultas agregadas no banco e retorno JSON).
 
@@ -29,6 +32,21 @@ Para evitar que o Django Admin mostre apenas `Sale Object (1)` / IDs "crus", adi
 - `SaleItem`: mostra `Item: <produto> (x<quantidade>) - <venda>`
 
 Isso melhora a identificação das vendas ao cadastrar/visualizar registros no admin.
+
+## Secao Eventos (compras por evento)
+
+No admin (`/admin`), a secao **Eventos** permite registrar compras de produtos vinculadas a um evento:
+
+1. **Inventory → Products**: cadastre os produtos antes (se ainda nao existirem).
+2. **Eventos → Eventos → Adicionar evento**:
+   - **Nome do evento** (ex.: "Retiro de jovens")
+   - **Data do evento**
+   - Na tabela abaixo, adicione linhas com **Produto**, **Quantidade** e **Preco de compra** (valor unitario pago na epoca).
+3. Salve. O registro fica no historico e pode ser editado depois (clique no evento e altere nome, data ou itens).
+
+Tambem e possivel editar itens individualmente em **Eventos → Itens do evento**.
+
+Esses dados serao a base para metricas de BI futuras (produtos mais comprados por evento, custo por evento, evolucao de preco).
 
 ## Rodar o backend
 
@@ -61,6 +79,7 @@ Backend em: `http://127.0.0.1:8000`
   - `Product`, `InventoryMovement`
   - `Sale`, `SaleItem`
   - `CashMovement`
+  - `Event`, `EventItem`
 
 ## Banco de dados
 
