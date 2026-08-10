@@ -1,4 +1,4 @@
-# Como rodar no Cursor (primeira vez)
+# Como rodar
 
 ## 1) Requisitos
 
